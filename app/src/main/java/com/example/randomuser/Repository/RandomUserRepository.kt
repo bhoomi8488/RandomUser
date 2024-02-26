@@ -9,16 +9,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
 //
-// Created by bhoom on 2/23/2024.
+// Created by bhoomi on 2/23/2024.
 // Copyright (c) 2024 Bhoomi. All rights reserved.
 //
-class RandomUserRepository(private val countriesWebServices: RandomUserWebServices = RandomUserWebServices()) {
-    fun getUser(): Flow<ApiState<List<Root>>> = flow {
-        try {
-            val response = countriesWebServices.getCountries()
-            emit(ApiState.Success(response))
+class RandomUserRepository(private val userWebServices: RandomUserWebServices = RandomUserWebServices()) {
+    suspend fun getUser(): ApiState<Root> {
+        return try {
+            val response = userWebServices.getUser()
+            ApiState.Success(response)
         } catch (e: Exception) {
-            emit(ApiState.Error(e))
+            println("AAA--e--"+e.message)
+            ApiState.Error(e)
         }
-    }.flowOn(Dispatchers.IO)
+    }
 }

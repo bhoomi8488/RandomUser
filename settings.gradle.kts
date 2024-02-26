@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.provider.inClassPathMode
+
 pluginManagement {
     repositories {
         google {
@@ -7,6 +9,7 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+
         mavenCentral()
         gradlePluginPortal()
     }
@@ -18,6 +21,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+
 
 rootProject.name = "RandomUser"
 include(":app")

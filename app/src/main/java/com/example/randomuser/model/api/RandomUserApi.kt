@@ -19,15 +19,15 @@ class RandomUserWebServices {
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
         api = retrofit.create(RandomUserApi::class.java)
     }
-    suspend fun getCountries(): List<Root>{
-        return api.getCountries()
+    suspend fun getUser(): Root{
+        println("AAA--"+api.getUser())
+        return api.getUser()
     }
 
     interface RandomUserApi{
-        @GET("countries.json")
-        suspend fun getCountries(): List<Root>
+        @GET("?results=10")
+        suspend fun getUser(): Root
     }
 }
